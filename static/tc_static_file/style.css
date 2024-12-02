@@ -1,0 +1,277 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4; /* Light gray background for a softer look */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px; /* Add padding equal to or larger than the navbar's height */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    height: 60px;
+    width: 100%;
+    position: fixed; /* Keep navbar fixed at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure navbar stays above content */
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 20px; /* Adjusted font size */
+}
+
+.navbar button#loginButton {
+    background-color: #444; /* Darker gray for the button */
+    color: white;
+    padding: 6px 12px; /* Shorter padding for a smaller button */
+    font-size: 14px; /* Smaller font size */
+    height: 35px; /* Specific height for the login button */
+    max-width: 120px; /* Fixed width */
+    line-height: 25px; /* Center text vertically */
+    border: none; /* Remove border */
+}
+
+.navbar button#loginButton:hover {
+    background-color: #555; /* Slightly lighter gray on hover */
+}
+
+/* General button styles for other buttons */
+button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    max-width: 500px; /* Match the width of the upload box */
+    margin: 20px 0;
+}
+
+/* Specific styles for the upload button */
+#uploadButton {
+    background-color: #333; /* Dark background for the button */
+    color: white;
+    padding: 12px 24px; /* Larger padding */
+    font-size: 16px; /* Larger font size */
+}
+
+#uploadButton:hover {
+    background-color: #444; /* Slightly lighter gray on hover */
+}
+
+.module-wrapper {
+    border: 2px solid #333; /* Dark border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
+    padding: 30px;
+    width: 90%; /* Responsive width */
+    max-width: 800px; /* Maximum width */
+    background-color: #fff;
+    position: relative;
+    margin-top: 20px; /* Add margin between navbar and upload module */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    padding: 20px; /* Adjusted padding */
+    position: relative;
+}
+
+.upload-box {
+    border: 2px dashed #333; /* Darker dashed border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 50px; /* Increased padding */
+    background-color: #f9f9f9; /* Light gray background */
+    transition: background-color 0.3s, border-color 0.3s;
+    text-align: center; /* Center the text inside */
+    width: 100%;
+    max-width: 650px; /* Increased max-width for larger content */
+}
+
+.upload-box:hover {
+    background-color: #e0e0e0; /* Slightly darker gray on hover */
+    border-color: #222; /* Darker border color on hover */
+}
+
+.upload-box.dragover {
+    background-color: #d0d0d0; /* Even darker gray for dragover state */
+    border-color: #111; /* Darkest border color for dragover */
+}
+
+#progress {
+    height: 30px; /* Adjusted height */
+    background-color: #e0e0e0; /* Light gray background */
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%; /* Ensure full width of its parent container */
+    max-width: 650px; /* Adjust this value as needed */
+    display: none; /* Initially hidden */
+}
+
+#progress-bar {
+    height: 100%;
+    background-color: #333; /* Dark background for progress bar */
+    width: 0;
+    text-align: center;
+    color: white;
+    line-height: 30px; /* Match progress bar height */
+    transition: width 0.2s;
+}
+
+#status {
+    font-size: 18px; /* Larger font size */
+    color: #333; /* Dark text color */
+    text-align: center;
+    margin-bottom: 20px;
+    display: none; /* Initially hidden */
+}
+
+#result-container {
+    margin-top: 30px; /* Spacing between upload module and result container */
+}
+
+#result {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px; /* Padding inside the result container */
+    border: 2px solid #333; /* Dark border for the result container */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #fff; /* White background */
+}
+
+#result .image-box {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#result img {
+    max-width: 100%;
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px;
+}
+
+#result .copy-link {
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Light gray border */
+    cursor: pointer;
+    word-wrap: break-word;
+    margin-top: 10px;
+}
+
+#result .copy-link:hover {
+    background-color: #e0e0e0; /* Slightly darker gray on hover */
+}
+
+/* Responsive styles */
+@media (min-width: 769px) {
+    #result {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #result .image-box {
+        flex: 1 1 calc(50% - 20px); /* Ensure horizontal display on larger screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .module-wrapper {
+        width: 95%;
+    }
+
+    #result .image-box {
+        flex: 1 1 100%;
+    }
+}
+
+/* Description and status container styles */
+.description-status-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px; /* Increased margin-bottom for spacing */
+    width: 100%; /* Ensure full width for alignment */
+    position: relative; /* Ensure child elements are positioned relative to this container */
+}
+
+.description {
+    font-size: 18px;
+    color: #333;
+}
+
+.description h2 {
+    margin: 0;
+    font-size: 22px; /* Adjusted font size for title */
+}
+
+.description p {
+    margin: 10px 0 0; /* Margin to provide spacing between title and description */
+    font-size: 18px; /* Adjusted font size for description */
+}
+
+#status {
+    font-size: 18px;
+    color: #333;
+    position: absolute; /* Position relative to the nearest positioned ancestor */
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px; /* Padding to ensure text is not against the edge */
+    background-color: #fff; /* Background color to ensure readability */
+    border: 1px solid #ddd; /* Optional: border to define status area */
+    border-radius: 5px; /* Optional: rounded corners */
+    display: none; /* Initially hidden */
+}
+
+.status-container {
+    color: green; /* Color to indicate status */
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
+}
+
+#result {
+    display: none; /* Initial hidden */
+    margin-top: 20px; /* Spacing from the top */
+}
+
+.image-box {
+    margin-bottom: 10px;
+}
+
+.image-box img {
+    max-width: 100%;
+    height: auto;
+}
+
+.copy-link {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+}
