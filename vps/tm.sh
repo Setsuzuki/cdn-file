@@ -44,4 +44,8 @@ fi
 echo "Running repocket container..."
 docker run --name repocket -e RP_EMAIL=mjonhson996@gmail.com -e RP_API_KEY=90fe4047-d14f-4716-8f86-12e7aed14ef4 -d --restart=always repocket/repocket
 
+# Step 5: Run repocket container
+echo "Running packetshare container..."
+docker run -d --restart unless-stopped packetshare/packetshare -accept-tos -email=demonsword18@outlook.com -password=Aa264580
+
 echo "Setup completed."
